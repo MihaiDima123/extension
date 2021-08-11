@@ -1,19 +1,41 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
+    "description": "Counts the times you've been visiting a website",
     "name": "Russian spy",
     "version": "1.0.0",
-    
-    "content_scripts":[
-        {
-        "matches": ["<all_urls>"],
-        "js": ["Content.js"]
-        }
-    ],
-    "browser_action":{
-        "default_popup": "Popup.html",
-        "default_title": "Daily raport"
+
+    "icons":{
+        "16": "./img/icon_1_16x16.png",
+        "32": "./img/icon_2_32x32.png",
+        "48": "./img/icon_4_48x48.png",
+        "128": "./img/icon_5_128x128.png"
     },
+
+    "background": {
+        "service_worker": "./background.js"
+    },
+
+    "action":{
+        "default_popup": "./Popup.html",
+        "default_icons":{
+            "16": "./img/icon_1_16x16.png",
+            "32": "./img/icon_2_32x32.png",
+            "48": "./img/icon_4_48x48.png",
+            "128": "./img/icon_5_128x128.png"
+        }
+    },
+
+    "options_page":"./options.html",
+    
     "permissions": [
-        "storage"
+        "storage",
+        "activeTab",
+        "tabs",
+        "scripting"
+    ],
+
+    "host_permissions": [
+        "<all_urls>"
     ]
+
 }
