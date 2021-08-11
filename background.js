@@ -8,6 +8,13 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo,tab)=>{
             chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
                 var URL = tabs[0].url;
                 var urls = [];
+
+                var pathArray = URL.split( '/' );
+                var protocol = pathArray[0];
+                var host = pathArray[2];
+                URL = protocol + '//' + host;
+
+
                 chrome.storage.local.get(['urls'], (result) => {
                     urls = result.urls;
                     if(urls === undefined){
@@ -27,7 +34,8 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo,tab)=>{
                         urls = result.urls !== undefined ? [ ...result.urls, obj] : [obj];
                     }
                     console.log(urls);
-                    chrome.storage.local.set({urls: urls});     
+                    chrome.storage.local.set({urls: urls},()=>{
+                    });     
                 });
            });
         })
@@ -38,8 +46,8 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo,tab)=>{
 })
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse)=>{
-    if(request.message === 'get_name'){
-        chrome.storage.local.get("name", data=>{
+    if(request.message === 'get_urls'){
+        chrome.storage.local.get("urls", data=>{
             if(chrome.runtime.lastError){
                 sendResponse({
                     message: 'fail'
@@ -47,7 +55,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse)=>{
             }else{
                 sendResponse({
                     message: 'success',
-                    payload: data.name
+                    payload: data
                 });
             }
 

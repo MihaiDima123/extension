@@ -6,28 +6,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap');
+
         *{
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            color: #333;
+            font-weight: bolder;
         }
         body{
-            width: 250px;
-            height: 500px;
-            background-color: orangered;
-            font-size: 30px;
-            color: white;
+            width: 20rem;
+            height: 30rem;
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: rgb(130, 172, 255);
+            
+        }
+
+        .title{
+            text-align: center;
+            margin: auto;
+            margin: 2rem 0rem;
+            font-size: 1.6rem;
+        }
+
+        .website-list{
+            list-style: none;
+        }
+
+        .website-list__element{
+            margin: 1rem;    
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
+             
         }
+        
+        .website-list__element--group{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: start;
+            flex-wrap: nowrap;
+        }
+        
+        .website-list__element--order{
+            font-size: 1.4rem;
+            margin-right: .4rem;
+        }
+
+        .website-list__element--link{
+            font-size: 1.4rem;
+            overflow-wrap: break-word;
+
+        }
+
+        .website-list__element--accessed{
+            color: #666;
+            text-align: right;
+        }
+
     </style>
 </head>
 <body>
-    <div>
-        Hello
-    </div>
+    <p class="title">
+        Top 5 most used websites
+    </p>
+
+    <ul class="website-list">
+        <li class="website-list__element">
+            <div class="website-list__element--group">
+                <p class="website-list__element--order">1.</p>
+                <p class="website-list__element--link">http://google.ro</p>
+            </div>
+            <p class="website-list__element--accessed">accessed 2 times</p>
+        </li>
+        <li class="website-list__element">
+            <p class="website-list__element--link">http://google.ro</p>
+            <p class="website-list__element--accessed">2 times</p>
+        </li>
+    </ul>
 
     <script src="./popup_script.js"></script>
 </body>
